@@ -15,6 +15,14 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('role_id')->constrained('roles');
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->string('cell');
+            $table->string('cedula');
+            $table->string('date_birth');
+            $table->string('city');
             $table->timestamps();
         });
     }

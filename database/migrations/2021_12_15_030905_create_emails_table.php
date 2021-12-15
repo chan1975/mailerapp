@@ -15,6 +15,11 @@ class CreateEmailsTable extends Migration
     {
         Schema::create('emails', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users');
+            $table->string('subject');
+            $table->string('address');
+            $table->string('body');
+            $table->string('status');
             $table->timestamps();
         });
     }
