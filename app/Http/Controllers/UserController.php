@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use DataTables;
 
 class UserController extends Controller
 {
@@ -12,9 +13,34 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        
+        if ($request->ajax()) {
+            $data = User::all();
+            //dd($data);
+            
+            return Datatables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('edad', function($row){
+                        list($year,$month,$day) = explode("-",$row->date_birth);
+                        $year_diff  = date("Y") - $year;
+                        $month_diff = date("m") - $month;
+                        $day_month   = date("d") - $day;
+                        if ($day_month < 0 || $month_diff < 0)
+                            $year_diff--;
+                         return $year_diff;
+                    })
+                    ->addColumn('action', function($row){
+                           $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
+                            return $btn;
+                    })
+                    
+                    ->rawColumns(['edad','action'])
+                    ->make(true);
+        }
+
+        return view('users.index');
     }
 
     /**

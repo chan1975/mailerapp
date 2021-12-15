@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('cell');
             $table->string('cedula');
-            $table->string('date_birth');
+            $table->date('date_birth');
             $table->string('city');
             $table->timestamps();
         });
