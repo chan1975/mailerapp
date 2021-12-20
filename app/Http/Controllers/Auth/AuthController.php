@@ -29,10 +29,25 @@ class AuthController extends Controller
         } else {
             if(Hash::check($request->password, $userInfo->password)){
                 $request->session()->put('LoggedUser', $userInfo->id);
+                $request->session()->put('RoleUser', $userInfo->role_id);
+                $request->session()->put('EmailUser', $userInfo->email);
                 return redirect('/');
             }else {
                 return back()->with('fail','Password incorrecto');
             }
+        }
+    }
+
+    public function dashboard(){
+        return view('dashboard');
+    }
+
+    public function logout(){
+        if(session()->has('LoggedUser')){
+            session()->pull('LoggedUser');
+            session()->pull('RoleUser');
+            session()->pull('EmailUser');
+            return redirect('auth/login');
         }
     }
 }

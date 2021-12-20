@@ -23,17 +23,19 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
+      @if(Session::get('RoleUser') == 1)
       <li class="nav-item">
         <a class="nav-link" href="/users">Usuarios</a>
       </li>
+      @endif
       <li class="nav-item">
         <a class="nav-link" href="/emails">Correos</a>
       </li>
     </ul>
     <span class="navbar-text">
-        usuario
+        Hola {{Session::get('EmailUser')}}
     </span>
-    <a class="nav-link" href="/cerrar">Cerrar Sesion</a>
+    <a class="nav-link" href="{{route('auth.logout')}}">Cerrar Sesion</a>
   </div>
 </nav>
     @yield('content')

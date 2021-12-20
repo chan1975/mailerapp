@@ -15,6 +15,14 @@ use App\Http\Controllers\Auth\AuthController;
 |
 */
 
-Route::resource('users', UserController::class);
-Route::get('auth/login', [AuthController::class, 'login'])->name('auth.login');
+
+
+Route::get('auth/logout', [AuthController::class, 'logout'])->name('auth.logout');
 Route::post('auth/check', [AuthController::class, 'check'])->name('auth.check');
+
+Route::group(['middleware'=>['AuthCheck']], function(){
+    Route::get('auth/login', [AuthController::class, 'login'])->name('auth.login');
+    Route::resource('users', UserController::class);
+    Route::get('/',  [AuthController::class, 'dashboard'])->name('dashboard');
+    
+});
