@@ -30,8 +30,11 @@ class UserController extends Controller
                             $year_diff--;
                          return $year_diff;
                     })
+                    ->addColumn('city', function($row){
+                        return $row->city->name;
+                    })
                     ->addColumn('action', function($row){
-                           $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
+                           $btn = '<a href="{{route(\'users.edit\')}}" class="edit btn btn-primary btn-sm">Edit</a>';
                             return $btn;
                     })
                     
@@ -79,7 +82,7 @@ class UserController extends Controller
         $user->cell = $request->cell;
         $user->cedula = $request->cedula;
         $user->date_birth = $request->date_birth;
-        $user->city = $request->city;
+        $user->city_id = $request->city;
 
         $save = $user->save();
 

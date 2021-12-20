@@ -36,7 +36,7 @@ class DatabaseSeeder extends Seeder
                 'cell' => '09999999999',
                 'cedula' => '1111111111',
                 'date_birth' => now(),
-                'city' => 'Cuenca',
+                'city_id' => 1,
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -48,7 +48,7 @@ class DatabaseSeeder extends Seeder
                 'cell' => '09999999999',
                 'cedula' => '1111111111',
                 'date_birth' => now(),
-                'city' => 'San Gabriel',
+                'city_id' => 2,
                 'created_at' => now(),
                 'updated_at' => now()
             ]

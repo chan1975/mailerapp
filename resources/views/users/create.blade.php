@@ -8,12 +8,12 @@
         @csrf
         <div class='form-group'>    
             <label for="nombre"> Nombre: </label>
-            <input id="nombre" class="form-control" type='text' name="name" required value="{{old('name')}}"/>
+            <input id="nombre" class="form-control" type='text' name="name" value="{{old('name')}}"/>
             <span class="text-danger">@error('name'){{ $message}} @enderror </span>
         </div>
         <div class='form-group'>    
             <label for="email"> Email: </label>
-            <input id="email" class="form-control" type='email' name="email" required value="{{old('email')}}"/>
+            <input id="email" class="form-control" type='email' name="email" value="{{old('email')}}"/>
             <span class="text-danger">@error('email'){{ $message}} @enderror </span>
         </div>
         <div class='form-group'>    
@@ -23,12 +23,12 @@
         </div>
         <div class='form-group'>    
             <label for="cedula"> Cedula: </label>
-            <input id="cedula" class="form-control" type='text' name ="cedula" required value="{{old('cedula')}}"/>
+            <input id="cedula" class="form-control" type='text' name ="cedula" value="{{old('cedula')}}"/>
             <span class="text-danger">@error('cedula'){{ $message}} @enderror </span>
         </div>
         <div class='form-group'>    
             <label for="password"> Password: </label>
-            <input id="password" class="form-control" type='password' name="password" required/>
+            <input id="password" class="form-control" type='password' name="password"/>
             <span class="text-danger">@error('password'){{ $message}} @enderror </span>
         </div>
         <div class='form-group'>    
@@ -58,7 +58,7 @@
             </select>
             <span class="text-danger">@error('city'){{ $message}} @enderror </span>
         </div>
-        <button class="btn btn-error"> Cancelar </button>
+        <a href="{{route('users.index')}}" class="btn btn-primary" > Cancelar </a>
         <button class="btn btn-success" type="submit"> Enviar </button>
     </form>
 </div>

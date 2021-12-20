@@ -23,7 +23,7 @@
                     <th>Edad</th>
                     <th>Celular</th>
                     <th>Cedula</th>
-                    <th>Ciudad</th>
+                    <th>Ciudad</th> 
                     <th width="100px">Action</th>
                 </tr>
             </thead>
