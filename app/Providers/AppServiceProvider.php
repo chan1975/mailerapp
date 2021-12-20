@@ -3,6 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Validator;
+use DateTime;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,6 +17,7 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
+        
     }
 
     /**
@@ -24,5 +28,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+        Validator::extend('olderThan', function($attribute, $value, $parameters)
+        {
+            $minAge = ( ! empty($parameters)) ? (int) $parameters[0] : 18;
+            return (new DateTime)->diff(new DateTime($value))->y >= $minAge;
+        });
     }
 }

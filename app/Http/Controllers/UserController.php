@@ -18,7 +18,6 @@ class UserController extends Controller
         
         if ($request->ajax()) {
             $data = User::all();
-            //dd($data);
             
             return Datatables::of($data)
                     ->addIndexColumn()
@@ -61,7 +60,16 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'=> 'required|max:100',
+            'email' => 'required|email|unique:users',
+            'cell'=>'nullable|min:10|max:10',
+            'cedula'=> 'required|max:11',
+            'password'=>'required|confirmed|min:8|regex:/[A-Z]/|regex:/[0-9]/|regex:/[@$!%*#?&]/',
+            'date_birth'=>'required|olderThan:18'
+        ],[
+            'date_birth.older_than'=>'The user cannot be under 18 years of age'
+        ]);
     }
 
     /**
