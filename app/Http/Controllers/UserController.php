@@ -70,6 +70,26 @@ class UserController extends Controller
         ],[
             'date_birth.older_than'=>'The user cannot be under 18 years of age'
         ]);
+
+        $user = new User;
+        $user->role_id = 2;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        $user->cell = $request->cell;
+        $user->cedula = $request->cedula;
+        $user->date_birth = $request->date_birth;
+        $user->city = $request->city;
+
+        $save = $user->save();
+
+        if($save){
+            return view('users.index')->with('success','Usuario creado exitosamente');
+        }else {
+            return back()->with('fail','Ha ocurrido un error al guardar los datos');
+        }
+
+        
     }
 
     /**

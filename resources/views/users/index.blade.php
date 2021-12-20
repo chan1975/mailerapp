@@ -1,7 +1,13 @@
 @extends('layouts.master')
 @section('title','Usuario')
 @section('content')
+
     <div class='container'>
+        @if(Session::get('success'))
+            <div class="alert alert-success">
+                {{Session::get('success')}}
+            </div>
+        @endif
         <br/>
         <form action="{{route('users.create')}}" method="GET">
             <button type="submit" class="btn btn-primary">Crear Usuario</button>
